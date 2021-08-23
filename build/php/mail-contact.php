@@ -8,13 +8,12 @@
 
         # FIX: Replace this email with recipient email
         $mail_to = "sales@novabots.ai";
-        $nameSite = "order-novabots@novabots.ai";
+        $nameSite = "contact-novabots@novabots.ai";
         
         # Sender Data
         $subject = trim($_POST["subject"]);
         $name = str_replace(array("\r","\n"),array(" "," ") , strip_tags(trim($_POST["firstname"])));
         $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
-        $platform = trim($_POST["platform"]);
         $message = trim($_POST["message"]);
         $ip = $_SERVER['REMOTE_ADDR'];
         $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
@@ -32,7 +31,6 @@
         
         $content = "Имя: $name\n";
         $content .= "Почта: $email\n";
-        $content .= "Платформа: $platform\n";
         $content .= "Сообщение: $message\n";
 
         # email headers.
