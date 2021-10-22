@@ -1,0 +1,201 @@
+{
+    "Name": "LShape v2",
+    "Workflow": {
+      "StartStep": "FBCrossSectionAlignment",
+      "Steps": [
+        {
+          "Name": "FBCrossSectionAlignment",
+          "DisplayName": "Fiducial based cross section alignment",
+          "NextStep": "FiducialBasedAlignment",
+          "Modules":
+          [
+            {
+              "Module": "FBCrossSectionAlignmentModuleUI",
+              "Submodule": "FBCrossSectionAlignment"
+            }
+          ]
+        },    
+        {
+          "Name": "FiducialBasedAlignment",
+          "DisplayName": "Fiducial based alignment",
+          "NextStep": "StructureFineAlignment",
+          "Modules":
+          [
+            {
+              "Module": "FiducialBasedAlignmentModuleUI",
+              "Submodule": "FiducialBasedAlignment"
+            }
+          ]
+        },    
+        {
+          "Name": "StructureFineAlignment",
+          "DisplayName": "Structure fine alignment",
+          "NextStep": "VolumePreview",
+          "Modules":
+          [
+            {
+              "Module": "StructureFineAlignmentModuleUI",
+              "Submodule": "StructureFineAlignment"
+            }
+          ]
+        },
+        {
+          "Name": "VolumePreview",
+          "DisplayName": "3D volume preview",
+          "StepOptions": "ViewOnly",
+          "NextStep": "ObjectDetection",
+          "Modules":
+          [
+            {
+              "Module": "VolumePreviewModuleUI",
+              "Submodule": "VolumePreview"
+            }
+          ]
+        },
+        {
+          "Name": "ObjectDetection",
+          "DisplayName": "Object detection",
+          "NextStep": "ContourExtraction",
+          "Modules":
+          [
+            {
+              "Module": "ObjectDetectionModuleUI",
+              "Submodule": "ObjectDetection"
+            }
+          ]
+        },
+        {
+          "Name": "ContourExtraction",
+          "DisplayName": "Contours extraction",
+          "Module": "ContourExtractionModule",
+          "NextStep": "ChannelTracing",
+          "Modules":
+          [
+            {
+              "Module": "ContourExtractionModuleUI",
+              "Submodule": "ContourExtraction"
+            }
+          ]
+        },
+        {
+          "Name": "ChannelTracing",
+          "DisplayName": "Channel tracing",
+          "NextStep": "SplitAnnotation",
+          "Modules": 
+          [
+            {
+              "Module": "ChannelTracingModuleALGO",
+              "Submodule": "ChannelTracing"
+            }
+          ]
+        },
+        {
+          "Name": "SplitAnnotation",
+          "DisplayName": "Split annotation",
+          "NextStep": "ProximitiesCalculation",
+          "Modules":
+          [
+            {
+              "Module": "ProximitiesModuleUI",
+              "Submodule": "SplitAnnotation"
+            }
+          ]
+        },
+        {
+          "Name": "ProximitiesCalculation",
+          "DisplayName": "Proximities Calculation",
+          "NextStep": "Proximities",
+          "Modules":
+          [
+            {
+              "Module": "MeasurementsExtractionModuleALGO",
+              "Submodule": "ProximitiesCalculation"
+            }
+          ]
+        },
+        {
+          "Name": "Proximities",
+          "DisplayName": "Proximities",
+          "NextStep": "TiltCalculation",    
+          "Modules":
+          [
+            {
+              "Module": "ProximitiesModuleUI",
+              "Submodule": "Proximities"
+            }
+          ]
+        },
+        {
+          "Name": "TiltCalculation",
+          "DisplayName": "Tilt calculation",
+          "NextStep": "MeasurementsExtraction",
+          "Modules":
+          [
+            {
+              "Module": "MeasurementsExtractionModuleALGO",
+              "Submodule": "TiltCalculation"
+            }
+          ]
+        },
+        {
+          "Name": "MeasurementsExtraction",
+          "DisplayName": "Measurements extraction",
+          "NextStep": "TiltMeasurements",
+          "Modules": 
+          [
+            {
+              "Module": "MeasurementsExtractionModuleALGO",
+              "Submodule": "MeasurementsExtraction"
+            }
+          ]
+        },
+        {
+          "Name": "TiltMeasurements",
+          "DisplayName": "Tilt measurements",
+          "NextStep": "MeshGeneration",
+          "Modules":
+          [
+            {
+              "Module": "ProximitiesModuleUI",
+              "Submodule": "TiltMeasurements"
+            }
+          ]
+        },
+        {
+          "Name": "MeshGeneration",
+          "DisplayName": "Mesh generation",
+          "NextStep": "3dVisualization",
+          "Modules":
+          [
+            {
+              "Module": "MeshGenerationModuleALGO",
+              "Submodule": "MeshGeneration"
+            }
+          ]
+        },
+        {
+          "Name": "3dVisualization",
+          "DisplayName": "Measurements results",
+          "StepOptions": "ViewOnly",        
+          "Modules":
+          [
+            {
+              "Module": "VisualizationModuleUI",
+              "Submodule": "3dVisualization"
+            }
+          ]
+        }
+      ]
+    },
+    "IncludedParameters":
+    [
+      "ObjectDetection.json",
+      "ContourExtraction.json",
+      "ChannelTracing.json",
+      "FBCrossSectionAlignment.json",
+      "StructureFineAlignment.json",
+      "MeasurementsExtraction.json"
+    ],
+    "ParameterInfos":
+    []
+  }
